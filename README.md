@@ -10,7 +10,7 @@ py main.py DISCORD_BOT_TOKEN CHANNEL_ID "Hi Test"
 #### Run with .exe
 
 ```cmd
-main.exe DISCORD_BOT_TOKEN CHANNEL_ID "Hi Test"
+SendToDiscord.exe DISCORD_BOT_TOKEN CHANNEL_ID "Hi Test"
 ```
 
 #### Build with venv (Windows, CMD)
