@@ -6,15 +6,21 @@ on:
   pull_request:
     branches: [ "main" ]
   release:
-    types: [created]
+    types: [published, created]
 
 permissions:
-  contents: read
+  contents: write
   actions: write
+  pull-requests: write
+  issues: write
+  deployments: write
+  packages: write
+  repository-projects: write
+  security-events: write
+  statuses: write
 
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
@@ -35,7 +41,7 @@ jobs:
       run: |
         python -m PyInstaller --paths .\venvName\Lib\site-packages --onefile --name SendToDiscord main.py
     - name: Release
-      if: github.event_name == 'release' && github.event.action == 'created'
+      if: github.event_name == 'release' && (github.event.action == 'created' || github.event.action == 'published')
       uses: softprops/action-gh-release@v1
       with:
         files: dist/SendToDiscord.exe
