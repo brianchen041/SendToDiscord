@@ -27,12 +27,13 @@ jobs:
       run: |
         py -m venv venvName
         .\venvName\Scripts\activate
-    - name: Install dependencies
+    - name: Install dependencies and PyInstaller
       run: |
         pip3 install -r requirements.txt
+        pip3 install pyinstaller
     - name: Package application as executable
       run: |
-        pyinstaller --paths venvName\Lib\site-packages main.py --onefile --name SendToDiscord
+        .\venvName\Scripts\pyinstaller.exe --paths venvName\Lib\site-packages main.py --onefile --name SendToDiscord
     - name: Release
       if: github.event_name == 'release' && github.event.action == 'created'
       uses: softprops/action-gh-release@v1
